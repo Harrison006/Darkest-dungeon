@@ -13,4 +13,11 @@ class Room():
             
     def link_rooms(self, room_to_link, direction):
         self.linked_rooms[direction.lower()]= room_to_link
+
+    def move(self, direction):
+        if direction in self.linked_rooms.keys():
+            return self.linked_rooms[direction]
+        else:
+            print("you cant go that way")
+            return self
         

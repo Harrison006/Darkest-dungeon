@@ -2,6 +2,7 @@
 
 from room import Room
 
+
 cavern = Room("Cavern")
 cavern.description = ("A room so big that the light of your torch doesnt reach the walls.")
 
@@ -24,3 +25,28 @@ cavern.describe()
 armoury.describe()
 lab.describe()
 Tavern.describe()
+
+'''
+# describe rooms
+cavern.describe()
+armoury.describe()
+lab.describe()
+Tavern.describe()
+'''
+
+# making varible
+current_room = cavern
+running = True
+
+#main loop
+while running:
+    current_room.describe()
+    
+    command = input("> ").lower()
+    
+    if command in ["north", "south", "east", "west"]:
+        current_room = current_room.move(command)
+    elif command == "quit":
+        running = False
+    else:
+        print("i dont understand")

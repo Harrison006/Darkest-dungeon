@@ -1,6 +1,7 @@
 #main.py
 
 from room import Room
+from Character import Character
 
 
 cavern = Room("Cavern")
@@ -33,6 +34,16 @@ armoury.describe()
 lab.describe()
 Tavern.describe()
 '''
+#characters
+ugine = Character("ugine")
+ugine.description = "a huge troll with rotting teeth."
+
+nigel = Character("Nigel")
+nigel.description = "a burky dwarf with golden beads woven through his beard."
+nigel.conversation = "well youngan, what are you doing here"
+#chracters in rooms
+armoury.character = ugine
+lab.character = nigel
 
 # making varible
 current_room = cavern
@@ -46,6 +57,21 @@ while running:
     
     if command in ["north", "south", "east", "west"]:
         current_room = current_room.move(command)
+    elif command == "talk":
+        if current_room.character is not None:
+            current_room.character.talk()
+        else:
+            print("there is no one here to talk to.")
+    elif command == "hug":
+        if current_room.character is not None:
+            current_room.character.hug()
+        else:
+            print("there is no one to hug here")
+    elif command == "fight":
+        if current_room.character is not None:
+            current_room.character.fight()
+        else:
+            print("there is no one here to fight")
     elif command == "quit":
         running = False
     else:

@@ -41,10 +41,13 @@ ugine.description = "a huge troll with rotting teeth."
 nigel = Character("Nigel")
 nigel.description = "a burky dwarf with golden beads woven through his beard."
 nigel.conversation = "well youngan, what are you doing here"
+
+tyrone.character("Tyrone")
+tyrone.description("Tyrone is here")
 #chracters in rooms
 armoury.character = ugine
 lab.character = nigel
-
+tavern.character = tyrone
 # making varible
 current_room = cavern
 running = True

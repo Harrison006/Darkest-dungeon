@@ -35,10 +35,10 @@ lab.describe()
 Tavern.describe()
 '''
 #characters
-ugine = Character("ugine")
+ugine = enemy("ugine")
 ugine.description = "a huge troll with rotting teeth."
 
-nigel = Character("Nigel")
+nigel = Friend("Nigel")
 nigel.description = "a burky dwarf with golden beads woven through his beard."
 nigel.conversation = "well youngan, what are you doing here"
 
@@ -72,7 +72,11 @@ while running:
             print("there is no one to hug here")
     elif command == "fight":
         if current_room.character is not None:
-            current_room.character.fight()
+            weapon = input("what will you fight with? > ").lower()
+            if current_room.character.fight(weapon):
+                current_room.character = None
+            else:
+                running = False
         else:
             print("there is no one here to fight")
     elif command == "quit":

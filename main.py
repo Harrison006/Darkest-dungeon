@@ -27,10 +27,10 @@ armoury.describe()
 lab.describe()
 Tavern.describe()
 #items
-cheese = Item("cheese")
+cheese = Item("Cheese")
 cheese.description = "Cheese"
 
-chair =Item("chair")
+chair = Item("chair")
 chair.description = "is designed to be sat on"
 
 elmo = Item("elmo")
@@ -41,14 +41,6 @@ cavern.item = chair
 armoury.item = elmo
 lab.item = cheese
 
-
-'''
-# describe rooms
-cavern.describe()
-armoury.describe()
-lab.describe()
-Tavern.describe()
-'''
 #characters
 ugine = Enemy("ugine")
 ugine.description = "a huge troll with rotting teeth."
@@ -66,6 +58,16 @@ Tavern.character = tyrone
 # making varible
 current_room = cavern
 running = True
+
+'''
+# describe rooms
+cavern.describe()
+armoury.describe()
+lab.describe()
+Tavern.describe()
+'''
+
+backpack = []
 
 #main loop
 while running:
@@ -109,7 +111,7 @@ while running:
             current_room.item = None
         else:
             print("there is nothing here to take")
-    elif command == "backpack"
+    elif command == "backpack":
         if backpack == []:
             print("its empty")
         else:

@@ -1,8 +1,8 @@
 #main.py
 
 from room import Room
-from Character import Character
-
+from Character import Character, Friend, Enemy
+from item import Item
 
 cavern = Room("Cavern")
 cavern.description = ("A room so big that the light of your torch doesnt reach the walls.")
@@ -26,6 +26,21 @@ cavern.describe()
 armoury.describe()
 lab.describe()
 Tavern.describe()
+#items
+cheese = Item("cheese")
+cheese.description = "Cheese"
+
+chair =Item("chair")
+chair.description = "is designed to be sat on"
+
+elmo = Item("elmo")
+elmo.description = "its elmo"
+
+#items in rooms
+cavern.item = chair
+armoury.item = elmo
+lab.item = cheese
+
 
 '''
 # describe rooms
@@ -35,19 +50,19 @@ lab.describe()
 Tavern.describe()
 '''
 #characters
-ugine = enemy("ugine")
+ugine = Enemy("ugine")
 ugine.description = "a huge troll with rotting teeth."
 
 nigel = Friend("Nigel")
 nigel.description = "a burky dwarf with golden beads woven through his beard."
 nigel.conversation = "well youngan, what are you doing here"
 
-tyrone.character("Tyrone")
+tyrone = Friend("Tyrone")
 tyrone.description("Tyrone is here")
 #chracters in rooms
 armoury.character = ugine
 lab.character = nigel
-tavern.character = tyrone
+Tavern.character = tyrone
 # making varible
 current_room = cavern
 running = True
@@ -73,12 +88,34 @@ while running:
     elif command == "fight":
         if current_room.character is not None:
             weapon = input("what will you fight with? > ").lower()
-            if current_room.character.fight(weapon):
-                current_room.character = None
+            available_weapons = []
+            for item in backpack:
+                available_weapons.append(item.name)
+            if weapon in available_weapons:
+                if current_room.character.fight(weapon):
+                    current_room.character = None
+                else:
+                    running = False
             else:
+                print(f"you dont have {weapon}")
+                print(f"{current_room.character.name} strikes you down.")
                 running = False
         else:
             print("there is no one here to fight")
+    elif command == "take":
+        if current_room.item is not None:
+            backpack.append(current_room.item)
+            print(f"you put {current_room.item.name} into your backpack.")
+            current_room.item = None
+        else:
+            print("there is nothing here to take")
+    elif command == "backpack"
+        if backpack == []:
+            print("its empty")
+        else:
+            print("you have:")
+            for item in backpack:
+                print(f"- {item.name.capitalize()}")
     elif command == "quit":
         running = False
     else:

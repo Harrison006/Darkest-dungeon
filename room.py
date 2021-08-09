@@ -5,12 +5,14 @@ class Room():
         self.description = None
         self.linked_rooms = {}
         self.character = None
-        
+        self.item = None
     def describe(self):
         print(f"\nYou are in the {self.name}")
         print(self.description)
         if self.character is not None:
             self.character.describe()
+        if self.item is not None:
+            self.item.describe()
         for direction in self.linked_rooms:
             print(f"to the {direction} is the {self.linked_rooms[direction].name}")
             

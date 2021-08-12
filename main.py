@@ -50,7 +50,7 @@ nigel.description = "a burky dwarf with golden beads woven through his beard."
 nigel.conversation = "well youngan, what are you doing here"
 
 tyrone = Friend("Tyrone")
-tyrone.description("Tyrone is here")
+tyrone.description="Tyrone is here"
 #chracters in rooms
 armoury.character = ugine
 lab.character = nigel
@@ -96,6 +96,9 @@ while running:
             if weapon in available_weapons:
                 if current_room.character.fight(weapon):
                     current_room.character = None
+                    if Enemy.get_num_of_enemy() == 0:
+                        print("You have slain all the enemies. You are Victorious!")
+                        running = False
                 else:
                     running = False
             else:
@@ -118,6 +121,14 @@ while running:
             print("you have:")
             for item in backpack:
                 print(f"- {item.name.capitalize()}")
+    elif command == "help":
+        print("Type which direction you wish to move")
+        print("or use one of these commands")
+        print("- Talk")
+        print('- fight')
+        print("- Hug")
+        print("- Take")
+        print("- Backpack")
     elif command == "quit":
         running = False
     else:

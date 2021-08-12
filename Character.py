@@ -31,15 +31,22 @@ class Friend(Character):
         
         
 class Enemy(Character):
+
+    num_of_enemy = 0
     
     def __init__(self,name):
         super().__init__(name)
         self.weakness = None
+        Enemy.num_of_enemy +=1
         
     def fight(self,item):
         if item == self.weakness:
             print(f"You strike {self.name} down with {item}")
+            Enemy.num_of_enemy -=1
             return True
         else:
             print(f"{self.name} crushes you. Puny adventuruer")
             return False
+
+    def get_num_of_enemy():
+        return Enemy.num_of_enemy
